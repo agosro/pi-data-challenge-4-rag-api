@@ -6,7 +6,7 @@ INAPPROPRIATE_KEYWORDS = [
     "matar",
     "violencia",
     "racista",
-    "sexista"
+    "sexista",
 ]
 
 def contains_inappropriate_language(text: str) -> bool:
