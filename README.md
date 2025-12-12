@@ -152,7 +152,6 @@ Si no hay información suficiente, la API responde:
 ## 👤 Autora
 
 **Agostina Rocío Torres**
-Analista de Sistemas
 
 ---
 
@@ -165,5 +164,3 @@ Este proyecto fue desarrollado con foco en:
 * prácticas responsables de uso de modelos de lenguaje
 
 ```
-
----
