@@ -7,6 +7,7 @@ load_dotenv()
 
 co = cohere.ClientV2(api_key=os.getenv("CO_API_KEY"))
 
+# Embeddings
 def embed_documents(texts: list[str]):
     """
     Embeddings para documentos / chunks.
@@ -20,6 +21,7 @@ def embed_documents(texts: list[str]):
     return response.embeddings.float
 
 
+# Embeddings
 def embed_query(text: str):
     """
     Embedding para una consulta del usuario.

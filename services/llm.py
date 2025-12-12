@@ -44,7 +44,7 @@ PREGUNTA:
 RESPUESTA:
 """
 
-
+# Responder pregunta con grounding
 def answer_question(question: str):
     results = semantic_search(question, top_k=1)
 
