@@ -1,3 +1,4 @@
+# Endpoint POST /upload. Recibe un título y contenido, valida que no estén vacíos y guarda el documento usando store.py.
 from fastapi import APIRouter, HTTPException, status
 from models.schemas import UploadInput, UploadResponse
 from services.store import save_document

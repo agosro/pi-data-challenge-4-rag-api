@@ -1,3 +1,4 @@
+# Configura el sistema de logs (registros) de la aplicación para que se muestren en la consola con un formato específico (hora, nivel, mensaje).
 import logging
 
 logger = logging.getLogger("rag_api")

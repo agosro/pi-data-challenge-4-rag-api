@@ -1,3 +1,4 @@
+# Maneja la base de datos vectorial ChromaDB. Se encarga de guardar los vectores generados (add_document_vectors) y de buscar los chunks más similares a una consulta (query_similar_chunks).
 import chromadb
 from chromadb.config import Settings
 import os

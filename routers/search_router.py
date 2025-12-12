@@ -1,3 +1,4 @@
+# Endpoint POST /search. Realiza una búsqueda semántica simple y devuelve los fragmentos encontrados.
 from fastapi import APIRouter, HTTPException, status
 from models.schemas import SearchInput, SearchResponse
 from services.search import semantic_search

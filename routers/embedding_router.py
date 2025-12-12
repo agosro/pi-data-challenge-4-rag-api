@@ -1,3 +1,4 @@
+# Endpoint POST /generate-embeddings. Busca un documento por ID, lo divide en chunks y genera/guarda sus vectores en ChromaDB. Maneja errores 404 si el documento no existe.
 from fastapi import APIRouter, HTTPException, status
 from models.schemas import EmbeddingInput, EmbeddingResponse
 from services.store import get_document, get_all_documents

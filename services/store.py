@@ -1,3 +1,4 @@
+# Funciona como una base de datos simple en memoria (un diccionario de Python) para guardar los documentos originales (título y contenido) antes de procesarlos, asignándoles un ID único.
 import uuid
 
 # Base de datos en memoria

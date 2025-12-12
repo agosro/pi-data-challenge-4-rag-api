@@ -1,3 +1,4 @@
+# Endpoint POST /ask. Es el más complejo; verifica si hay lenguaje inapropiado, registra logs de la actividad y llama a answer_question para obtener la respuesta generada por IA.
 from fastapi import APIRouter, HTTPException, status
 from models.schemas import AskInput, AskResponse
 from services.llm import answer_question

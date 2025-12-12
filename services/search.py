@@ -1,3 +1,4 @@
+# Coordina la búsqueda semántica. Toma una consulta de texto, la convierte en vector (usando embeddings.py) y busca coincidencias en ChromaDB (usando vectorstore.py), formateando el resultado con un puntaje de similitud.
 from services.embeddings import embed_query
 from services.vectorstore import query_similar_chunks
 

@@ -1,3 +1,4 @@
+# Es el cliente que conecta con la API de Cohere. Tiene dos funciones: embed_documents (para vectorizar los chunks de texto) y embed_query (para vectorizar la pregunta del usuario).
 from dotenv import load_dotenv
 import cohere
 import os

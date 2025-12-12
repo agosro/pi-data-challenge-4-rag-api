@@ -1,3 +1,4 @@
+# Es el punto de entrada de la aplicación. Configura la instancia de FastAPI, carga las variables de entorno y conecta (incluye) todos los "routers" (las rutas de la API) definidos en la carpeta routers/. También define un manejador de excepciones global para asegurar que los errores 500 se devuelvan con el formato JSON correcto.
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse
 from dotenv import load_dotenv

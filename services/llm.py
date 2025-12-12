@@ -1,3 +1,4 @@
+# Contiene la lógica para "Responder preguntas" (RAG). Busca el contexto más relevante, construye un prompt con reglas de "Grounding" (para que no invente datos) y envía todo al modelo command-r-plus-08-2024 de Cohere para generar la respuesta final.
 from dotenv import load_dotenv
 import cohere
 import os

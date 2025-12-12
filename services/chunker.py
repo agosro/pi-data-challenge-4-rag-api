@@ -1,3 +1,4 @@
+# Se encarga de dividir textos largos en fragmentos más pequeños (chunks). Utiliza RecursiveCharacterTextSplitter de LangChain con un tamaño de chunk de 500 caracteres y una superposición (overlap) de 50 caracteres para mantener el contexto entre cortes.
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 # Creamos el splitter una sola vez

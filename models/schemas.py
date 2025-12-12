@@ -1,3 +1,4 @@
+# Define las estructuras de datos (Input/Output) usando Pydantic. Asegura que los datos que entran y salen de la API tengan el formato correcto (ej: que UploadInput tenga título y contenido).
 from pydantic import BaseModel
 from typing import List, Optional
 
