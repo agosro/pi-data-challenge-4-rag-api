@@ -1,26 +1,48 @@
-# Es el punto de entrada de la aplicación. Configura la instancia de FastAPI, carga las variables de entorno y conecta (incluye) todos los "routers" (las rutas de la API) definidos en la carpeta routers/. También define un manejador de excepciones global para asegurar que los errores 500 se devuelvan con el formato JSON correcto.
+# ========================================
+# ARCHIVO PRINCIPAL - main.py
+# ========================================
+# Este es el punto de entrada de toda la aplicación.
+# Configura FastAPI y conecta todas las rutas (endpoints)
+# ========================================
+
+# Importar FastAPI (el framework web para crear APIs)
 from fastapi import FastAPI, Request, HTTPException
+# Importar JSONResponse para devolver respuestas en formato JSON
 from fastapi.responses import JSONResponse
+# Importar load_dotenv para cargar variables de entorno desde .env
 from dotenv import load_dotenv
 
+# Importar todos los routers (cada uno maneja diferentes endpoints)
 from routers.upload_router import router as upload_router
 from routers.embedding_router import router as embedding_router
 from routers.search_router import router as search_router
 from routers.ask_router import router as ask_router
 
+# Cargar variables de entorno del archivo .env (API keys, etc.)
 load_dotenv()
 
+# Crear la aplicación FastAPI con título y versión
 app = FastAPI(title="Get Talent: Challenge 4", version="1.0.0")
 
-app.include_router(upload_router) # Ruta para subir documentos
-app.include_router(embedding_router) # Ruta para generar embeddings
-app.include_router(search_router) # Ruta para búsqueda semántica
-app.include_router(ask_router) # Ruta para hacer preguntas al LLM
+# Conectar cada router a la aplicación
+# Esto hace que los endpoints de cada router estén disponibles
+app.include_router(upload_router)      # POST /upload
+app.include_router(embedding_router)   # POST /generate-embeddings
+app.include_router(search_router)      # POST /search
+app.include_router(ask_router)         # POST /ask
 
+# Manejador global de excepciones HTTP
+# Se ejecuta cada vez que se lanza una HTTPException
 @app.exception_handler(HTTPException)
 async def http_exception_handler(request: Request, exc: HTTPException):
-    # Si es 500, devolvemos el formato exigido por el enunciado
+    """
+    Maneja todas las excepciones HTTP de la aplicación.
+    Si el error es 500, devuelve formato {"error": mensaje}
+    Para otros errores, devuelve formato {"detail": mensaje}
+    """
+    # Verificar si es un error 500 (Internal Server Error)
     if exc.status_code == 500:
+        # Devolver con formato especial para errores 500
         return JSONResponse(status_code=500, content={"error": exc.detail})
-    # Para el resto, dejamos el estándar
+    # Para cualquier otro error (400, 404, etc.)
     return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})

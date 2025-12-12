@@ -1,44 +1,90 @@
-# Define las estructuras de datos (Input/Output) usando Pydantic. Asegura que los datos que entran y salen de la API tengan el formato correcto (ej: que UploadInput tenga título y contenido).
+# ========================================
+# SCHEMAS - models/schemas.py
+# ========================================
+# Define los MODELOS DE DATOS usando Pydantic
+# Valida automáticamente que los datos tengan el formato correcto
+# ========================================
+
+# Importar BaseModel de Pydantic (base para crear modelos de datos)
 from pydantic import BaseModel
+# Importar tipos para listas y valores opcionales
 from typing import List, Optional
 
-# ---------- INPUTS ----------
+# ========== MODELOS DE ENTRADA (REQUEST) ==========
+# Estos definen qué datos debe enviar el cliente
 
 class UploadInput(BaseModel):
-    title: str
-    content: str
+    """
+    Modelo para subir un documento.
+    El cliente debe enviar título y contenido.
+    """
+    title: str      # Título del documento (tipo texto)
+    content: str    # Contenido del documento (tipo texto)
 
 class EmbeddingInput(BaseModel):
-    document_id: str
+    """
+    Modelo para generar embeddings de un documento.
+    Solo necesita el ID del documento.
+    """
+    document_id: str  # ID único del documento (UUID)
 
 class SearchInput(BaseModel):
-    query: str
+    """
+    Modelo para buscar documentos.
+    El usuario envía una consulta en texto.
+    """
+    query: str  # Texto de búsqueda
 
 class AskInput(BaseModel):
-    question: str
+    """
+    Modelo para hacer una pregunta al sistema.
+    El usuario envía su pregunta.
+    """
+    question: str  # Pregunta del usuario
 
 
-# ---------- OUTPUTS ----------
+# ========== MODELOS DE SALIDA (RESPONSE) ==========
+# Estos definen qué datos devuelve el servidor
 
 class UploadResponse(BaseModel):
-    message: str
-    document_id: str
+    """
+    Respuesta después de subir un documento.
+    Incluye mensaje de éxito y el ID generado.
+    """
+    message: str        # Mensaje de confirmación
+    document_id: str    # ID del documento creado
 
 class EmbeddingResponse(BaseModel):
-    message: str
+    """
+    Respuesta después de generar embeddings.
+    Solo incluye mensaje de confirmación.
+    """
+    message: str  # Mensaje de confirmación
 
 class SearchResult(BaseModel):
-    document_id: str
-    title: str
-    content_snippet: str
-    similarity_score: float
+    """
+    Un resultado individual de búsqueda.
+    Contiene información del documento encontrado.
+    """
+    document_id: str        # ID del documento
+    title: str              # Título del documento
+    content_snippet: str    # Fragmento del contenido (preview)
+    similarity_score: float # Qué tan similar es (0.0 a 1.0)
 
 class SearchResponse(BaseModel):
-    results: List[SearchResult]
+    """
+    Respuesta completa de búsqueda.
+    Contiene una lista de resultados.
+    """
+    results: List[SearchResult]  # Lista de resultados (puede estar vacía)
 
 class AskResponse(BaseModel):
-    question: str
-    answer: str
-    grounded: bool
-    context_used: Optional[str]
-    similarity_score: Optional[float]
+    """
+    Respuesta a una pregunta del usuario.
+    Incluye la respuesta generada y metadatos.
+    """
+    question: str                    # La pregunta original
+    answer: str                      # La respuesta generada
+    grounded: bool                   # Si la respuesta está basada en documentos
+    context_used: Optional[str]      # Contexto usado (puede ser None)
+    similarity_score: Optional[float] # Score de similitud (puede ser None)
