@@ -135,7 +135,7 @@ Si no hay información suficiente, la API responde:
 ├── services/
 │   ├── store.py
 │   ├── embeddings.py
-    ├── chunker.py
+│   ├── chunker.py
 │   ├── vectorstore.py
 │   ├── search.py
 │   ├── llm.py
